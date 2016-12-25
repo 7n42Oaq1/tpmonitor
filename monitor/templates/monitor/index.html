@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">   
+	<script type='text/javascript' src='../public/js/jquery-1.8.2.min.js'></script>                        
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>                                   
+	<script src="http://cdn.bootcss.com/bootstrap/2.3.1/js/bootstrap-transition.js"></script>              
+	<script src="http://cdn.bootcss.com/bootstrap/2.3.1/js/bootstrap-modal.js"></script>
+	<title>用户登录</title>
+	<style>
+		.login_box {
+			border-color: blue;
+			border-width: 1px;
+			border-style: solid;
+			width: 400px;
+			height: 300px;
+			margin: 100px 370px
+		}
+		#name{
+			margin-top: 30px;
+		}
+		button {
+			margin-left: 120px;
+		}
+		#register {
+			margin-left: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+
+		<div class="login_box">
+			<h1 class="text-center text-primary">用户登录</h1>
+			<form action="{% url 'login' %}" method="post" class="">
+			{% csrf_token %}
+					<input type="text" placeholder="请输入用户名" class="form-control" name="name"><br>
+					<input type="password" placeholder="请输入密码" class="form-control" name="password">
+					<br>
+					<button type="submit" class="btn btn-primary">登录</button>
+					<a href="/register" class="btn btn-primary" id="register">注册</a>
+			</form>
+
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'monitor/css/bootstrap.min.css'%}"> 
+	<script src="{% static 'monitor/js/jquery-3.1.1.min.js' %}"></script>  
+	<title>{% block title %}温湿度监控系统{% endblock %}</title>
+	<script>
+		$(document).ready(function() {
+    		$("p").addClass("text-center");
+  		});	
+	</script>
+	{% block js %}
+
+	{% endblock %}
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row" style="width: auto">
+		{% include 'monitor/banner.html' %}
+		</div>
+		<div class="row">
+			<div class="col-sm-2" style=" margin-top: 20px;width:200px;">
+				{% include 'monitor/list.html' %}
+			</div>
+			<div class="col-md-8" style="margin-top: 20px">
+				{% block content %}
+				<div>
+					<p class="" style="margin-top: 50px">这里是默认内容</p>		
+				</div>
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+
+	
+
+	
+
+</body>
+</html>
