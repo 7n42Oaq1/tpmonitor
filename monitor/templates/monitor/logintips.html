@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'monitor/css/bootstrap.min.css'%}"> 
+	<title>温湿度监控系统</title>
+</head>
+<body>
+	<div>
+		<p class="text-center">
+			您还未登录，请登录后再进行相关操作！
+		</p>
+		<p class="text-center">
+			<a href="{% url 'index' %}">登录页面</a>
+		</p>
+	</div>
+</body>
+</html>

@@ -17,21 +17,28 @@ def user_login(request):
         user = authenticate(username=username,password=password)
         if user is not None and user.is_active:
             login(request,user)
-            return redirect('/homepage')
+            return redirect('/mydevice')
 
     ctx={}
     ctx.update(csrf(request))
     return HttpResponse("用户名或密码错误")
 
 def homepage(request):
-    return render(request,'monitor/homepage.html')
+    return render(request, 'monitor/homepage.html')
 
 def device_manage(request):
-    return render(request,'monitor/device_manage.html')
+    if request.user.username != "":
+        return render(request,'monitor/device_manage.html')
+
+    return render(request, 'monitor/logintips.html')
 
 def my_device(request):
-    return render(request,'monitor/my_device.html')
+    if request.user.username != "":
+        return render(request,'monitor/my_device.html')
 
-def logout(request):
-    #logout(request)
+    return render(request,'monitor/logintips.html')
+def user_logout(request):
+    user = request.user
+    if user is not None and user.is_active:
+        logout(request)
     return redirect('/')

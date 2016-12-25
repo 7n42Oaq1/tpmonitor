@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'^homepage/',views.homepage,name="homepage"),
     url(r'^devicemanage/',views.device_manage,name="dvmanage"),
     url(r'^mydevice/',views.my_device,name="mydevice"),
-    url(r'^logout/',views.logout,name="logout"),
+    url(r'^logout/',views.user_logout,name="logout"),
 ]
