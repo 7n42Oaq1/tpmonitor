@@ -14,6 +14,11 @@
 	{% block js %}
 
 	{% endblock %}
+	<style>
+		h4 {
+			display: inline;
+		}
+	</style>
 </head>
 <body>
 	<div class="container-fluid">
@@ -24,7 +29,7 @@
 			<div class="col-sm-2" style=" margin-top: 20px;width:200px;">
 				{% include 'monitor/list.html' %}
 			</div>
-			<div class="col-md-8" style="margin-top: 20px">
+			<div class="col-md-10" style="margin-top: 20px">
 				{% block content %}
 				<div>
 					<p class="" style="margin-top: 50px">这里是默认内容</p>		

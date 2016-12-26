@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^devicemanage/',views.device_manage,name="dvmanage"),
     url(r'^mydevice/',views.my_device,name="mydevice"),
     url(r'^logout/',views.user_logout,name="logout"),
+    url(r'^edit/(?P<name>t[0-9]+)/',views.edit_device,name="edit"),
 ]

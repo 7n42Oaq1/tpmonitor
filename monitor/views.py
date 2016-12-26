@@ -2,7 +2,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import *
+from django.template import loader
 
+from models import device
 # Create your views here.
 from django.template.context_processors import csrf
 
@@ -28,7 +30,12 @@ def homepage(request):
 
 def device_manage(request):
     if request.user.username != "":
-        return render(request,'monitor/device_manage.html')
+        devicelist = device.objects.all()
+        template = loader.get_template('monitor/device_manage.html')
+        context = {
+            'devicelist':devicelist,
+        }
+        return HttpResponse(template.render(context,request))
 
     return render(request, 'monitor/logintips.html')
 
@@ -42,3 +49,11 @@ def user_logout(request):
     if user is not None and user.is_active:
         logout(request)
     return redirect('/')
+
+def edit_device(request,name):
+    theDevice = device.getdevice(name=name)
+    template = loader.get_template('monitor/device_edit.html')
+    context = {
+        'device': theDevice,
+    }
+    return HttpResponse(template.render(context, request))

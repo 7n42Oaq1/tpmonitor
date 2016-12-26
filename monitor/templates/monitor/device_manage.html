@@ -1,9 +1,67 @@
 {% extends 'monitor/base.html' %}
 {%block js %}
-<script>
-	$(document).ready(function() {
-    	$("#list2").addClass("active");
-  	});
-</script>
+	<script>
+		$(document).ready(function() {
+    		$("#list2").addClass("active");
+  		});
+	</script>
 {% endblock %}
-	
+
+{% block content %}
+	<table class="table">
+		<tbody>
+		<thread>
+		<tr>
+			<th><strong>SN</strong></th>
+			<th><strong>名称</strong></th>
+			<th><strong>温度</strong></th>
+			<th><strong>上次更新</strong></th>
+			<th width="10%"><strong>报警</strong></th>
+			<th><strong>操作</strong></th>
+		</tr>
+		</thread>
+		{% if devicelist %}
+			{% for device in devicelist %}
+			<tr>
+				<td>
+					 <h4>{{device.sn}}</h4>
+				</td>
+				<td><h4> {{device.name}}</h4> </td>
+				<td>
+						<h4> {{device.temperature}}℃</h4> 
+					</div>
+					{% if device.alarmTpMin %}
+						<h4>({{ device.alarmTpMin }}&nbsp-&nbsp</h4>
+					{% else %}
+						<h4>(&nbsp-&nbsp</h4>
+					{% endif %}
+					</div>
+					{% if device.alarmTpMax %}
+						<h4>{{device.alarmTpMax}})</h4>
+					{% else %}
+						<h4>)</h4>
+					{% endif %}
+					</div>
+				</td>
+				<td><h4> {{device.updatetime|date:"Y/m/d H:i:s"}}</h4> </td>
+				
+				{% if device.status == True %}
+					<td><h4>无</h4></td>
+				{% else %}
+					<td><h4>有</h4></td>
+				{% endif %}
+				</div>
+				<td>
+					<a href="{% url 'edit' device.name %}" class="btn btn-primary">编辑</a>
+					<a href="#" class="btn btn-danger">删除</a>
+					<a href="#" class="btn btn-success">导出</a>
+				</td>
+			</tr>
+			{% endfor %}
+		{% else %}
+			<p>无设备</p>
+		{% endif %}
+		</tbody>	
+	</table>	
+
+{% endblock %}
